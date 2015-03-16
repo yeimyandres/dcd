@@ -1,0 +1,57 @@
+//ARCHIVOS IMPORTADOS
+@import "normalize.css"
+@import url("http://fonts.googleapis.com/css?family=Ubuntu|Titillium+Web|Raleway")
+
+//COLORES
+azuliccf = rgb(0,70,142)
+blanco = rgb(255,255,255)
+grisboton = rgb(221,221,221)
+negro = rgb(0,0,0)
+
+//ESTILOS
+body
+	color azuliccf
+	font-family "Raleway"
+	font-size 16px
+
+footer
+	border-top 1px solid azuliccf
+	padding .5em 1em 0 0
+	text-align right
+	p
+		&.piedepagina
+			font-size .8em
+
+header
+	border-bottom 1px solid azuliccf
+	padding .5em 0 1em 1.5em
+
+figure
+h1
+h2
+p
+	margin 0
+	padding 0
+
+section
+	text-align center 
+	padding 1em 0
+	figure
+		img
+			&.logo
+				width 250px
+	h2
+		margin 0 0 1em 0
+	form
+		input
+			border 1px solid grisboton
+			border-radius .5em
+			display block
+			margin 1em auto
+			padding .5em
+			text-align center
+			width 250px
+			&[type="submit"]
+				border-radius 0
+				margin 1.5em auto 0 auto
+				width 200px
