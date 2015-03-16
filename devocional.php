@@ -12,7 +12,7 @@
 <body>
 	<header>
 		<figure>
-			<a class="enlaceLogo">
+			<a class="enlaceLogo" href="./">
 				<img class="imagenLogo" src="./img/logoICCF.jpg" alt="Comunife Cali">
 			</a>
 		</figure>
@@ -24,7 +24,7 @@
 	</nav>
 	<section>
 		<article class="calendario">
-			
+			<?php include "./php/calendario.php"; ?>
 		</article>
 		<article class="pasaje">
 			

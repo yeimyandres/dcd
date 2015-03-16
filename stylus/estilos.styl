@@ -5,7 +5,9 @@
 //COLORES
 azuliccf = rgb(0,70,142)
 blanco = rgb(255,255,255)
+diadomingo = rgb(221,130,140)
 grisboton = rgb(221,221,221)
+grisazul = rgb(221,221,255)
 negro = rgb(0,0,0)
 
 //ESTILOS
@@ -45,6 +47,7 @@ nav
 			display block
 			a
 				background azuliccf
+				border 1px solid azuliccf
 				color blanco
 				display block
 				padding .7em 0
@@ -61,6 +64,31 @@ footer
 	border-top 1px solid azuliccf
 	clear both
 	padding 1em 0 0 2em
+
+section
+	padding 1em 0
+
+.calendario
+	table
+		tr
+			height 1.5em
+			text-align center
+			td
+			th
+				width 3em
+			td
+				color azuliccf
+				&.diaactual
+					background rgb(90,180,100)
+					color blanco
+				&.domingo
+					color rgb(220,20,30)
+				&.opciondia:hover
+					background rgb(210,210,25)
+					cursor pointer
+			th
+				background grisazul
+				color azuliccf
 
 .imagenLogo
 	width 100px
