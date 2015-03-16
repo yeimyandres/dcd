@@ -40,9 +40,6 @@ nav
 	height auto
 	width 20%
 	ul
-		list-style none
-		margin 0 1em 0 0
-		padding 0
 		li
 			display block
 			a
@@ -66,7 +63,20 @@ footer
 	padding 1em 0 0 2em
 
 section
+	float right
 	padding 1em 0
+	width 78%
+
+ul
+	list-style none
+	margin 0
+	padding 0
+	
+#fechaactual
+	margin 2em 0 0 0
+	#mifecha
+		background azuliccf
+		color blanco
 
 .calendario
 	table
@@ -79,16 +89,68 @@ section
 			td
 				color azuliccf
 				&.diaactual
-					background rgb(90,180,100)
+					background azuliccf
 					color blanco
 				&.domingo
 					color rgb(220,20,30)
 				&.opciondia:hover
-					background rgb(210,210,25)
+					background grisboton
+					color azuliccf
 					cursor pointer
 			th
 				background grisazul
 				color azuliccf
 
+.devocional
+	margin-top 1em
+	ul
+		li
+			margin 0 0 5px 0
+			text-align center
+			a
+				background grisboton
+				color azuliccf
+				display block
+				padding .5em 0
+				text-decoration none
+				&:hover
+					cursor pointer
+			div
+				display none
+				textarea
+					display block
+					margin 0 auto
+					width 90%
+
 .imagenLogo
 	width 100px
+
+.seleccionfecha
+	float left
+	margin 0 2em 0 0
+	width 300px
+	ul
+		margin 0 0 5px 0
+		li
+			display block
+			text-align center
+			a
+				display block
+				text-transform uppercase
+				&:hover
+					cursor pointer
+			&.principal
+				margin 0 0 5px 0
+				a
+					background azuliccf
+					color blanco
+					padding .4em 0
+			&.secundario
+				display none
+				a
+					background grisboton
+					border 1px solid blanco
+					color azuliccf
+					padding .2em 0
+					&:hover
+						text-decoration underline

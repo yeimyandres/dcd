@@ -1,9 +1,6 @@
 <?php
 
-	$diaactual = date("j");
-	$mesactual = date("n");
 	$diasmesactual = date("t");
-	$añoactual = date ("Y");
 	$diainicial = date("w", mktime(0,0,0,$mesactual,1,$añoactual));
 	echo "<table>";
 	echo "<tr>";
@@ -46,5 +43,7 @@
 		}
 	}
 	echo "</tr></table>";
+
+	echo "<div id='fechaactual'><b>Fecha Actual Seleccionada:</b><div id='mifecha'>".date("j")." de ".$meses[date("n")]." de ".date("Y")."</div></div>";
 
 ?>

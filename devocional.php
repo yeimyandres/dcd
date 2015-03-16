@@ -12,7 +12,7 @@
 <body>
 	<header>
 		<figure>
-			<a class="enlaceLogo" href="./">
+			<a class="enlaceLogo" href="./inicio.php">
 				<img class="imagenLogo" src="./img/logoICCF.jpg" alt="Comunife Cali">
 			</a>
 		</figure>
@@ -23,6 +23,9 @@
 		<?php include "./inc/menu.php"; ?>
 	</nav>
 	<section>
+		<article class="seleccionfecha">
+			<?php include "./php/selectoresfecha.php"; ?>
+		</article>
 		<article class="calendario">
 			<?php include "./php/calendario.php"; ?>
 		</article>
@@ -30,7 +33,7 @@
 			
 		</article>
 		<article class="devocional">
-			
+			<?php include "./php/opcionesdevocional.php"; ?>
 		</article>
 		<article class="comentarios">
 			
@@ -40,6 +43,25 @@
 		<p class="piedepagina">WEBPro Soluciones</p>
 		<p class="piedepagina">2015</p>
 	</footer>
+
+	<script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$(".botonaños").click(function(){
+				$(".secaños").slideToggle("400");
+			});
+			$(".botonmeses").click(function(){
+				$(".secmeses").slideToggle("1000");
+			});
+			$(".opciondevocional").click(function(){
+				var nombre = "sub" + $(this).attr("id");
+				$("."+nombre).slideToggle("500");
+			});
+		});
+
+	</script>
+
 </body>
 
 </html>
