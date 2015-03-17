@@ -30,13 +30,16 @@
 			<?php include "./php/calendario.php"; ?>
 		</article>
 		<article class="pasaje">
-			
+			<?php include "./php/pasaje.php"; ?>			
 		</article>
 		<article class="devocional">
 			<?php include "./php/opcionesdevocional.php"; ?>
 		</article>
 		<article class="comentarios">
-			
+			<h2>Comentarios del pasaje del día de hoy</h2>
+			<textarea name="txtcomentarios" id="txtcomentarios" cols="30" rows="5"></textarea>
+			<input type="button" value="Guardar">
+			<input type="button" value="Terminar">
 		</article>
 	</section>
 	<footer>
