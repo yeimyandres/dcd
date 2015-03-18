@@ -33,6 +33,7 @@
 			<?php include "./php/pasaje.php"; ?>			
 		</article>
 		<article class="devocional">
+			<h2>MI DEVOCIONAL</h2>
 			<?php include "./php/opcionesdevocional.php"; ?>
 		</article>
 		<article class="comentarios">
