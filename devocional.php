@@ -1,3 +1,22 @@
+<?php
+	session_start();
+
+	if (!isset($_SESSION['IdUsuario']))
+	{
+?>
+		<script language="Javascript">
+			window.alert('Acceso no autorizado');
+			window.location='../';
+		</script>
+<?php
+	}
+	else
+	{
+		date_default_timezone_set("America/Bogota");
+		$idusuario = $_SESSION['IdUsuario'];
+		$nombreusuario = $_SESSION['NombreUsuario'];
+		$imagenusuario = $_SESSION['ImagenUsuario'];
+?>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -19,6 +38,18 @@
 		</figure>
 		<h1>Proyecto Beta DCD - v1.0</h1>
 		<p>Pagina Inicial</p>
+		<div class="infousuario">
+			<figure>
+				<a class="iconousuario" href="./perfil.php">
+					<img <?php echo "src='./img/usuarios/".$imagenusuario."' title='".utf8_encode($nombreusuario)."'" ?>>
+				</a>
+			</figure>
+			<ul>
+				<li>
+					<a class="opcioncabecera" href="./php/salir.php">Cerrar Sesión</a>
+				</li>
+			</ul>
+		</div>
 	</header>
 	<nav>
 		<?php include "./inc/menu.php"; ?>
@@ -70,3 +101,6 @@
 </body>
 
 </html>
+<?php
+}
+?>
