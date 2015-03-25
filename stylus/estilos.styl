@@ -16,9 +16,6 @@ negro = rgb(0,0,0)
 	font-family Raleway
 
 figure
-	margin 0
-	padding 0
-	
 h1
 h2
 p
@@ -131,8 +128,18 @@ ul
 				border-radius 10px
 				margin 0 auto
 				padding .5em 1em
+				&[type="submit"]
+					margin 2em auto 0 auto
 			label
 				margin 1em 0 0 0
+	figure
+		text-align center
+		a
+			img
+				border-radius 50%
+				width 150px
+	h2
+		margin .5em 0 2em 0
 
 .devocional
 	margin-top 1em
@@ -161,7 +168,29 @@ ul
 
 .imagenLogo
 	width 100px
-	
+
+.infousuario
+	position absolute
+	padding .5em 1em 0 0 
+	right 0
+	top 0
+	figure
+		margin 0
+		a
+			text-decoration none
+			img
+				border-radius 50%
+				width 50px
+				&:hover
+					cursor pointer
+	ul
+		display inline-block
+		margin 0
+		li
+			a
+				&:hover
+					cursor pointer
+
 .pasaje
 	border 1px solid azuliccf
 	margin 1em 0

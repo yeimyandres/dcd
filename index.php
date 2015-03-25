@@ -23,9 +23,9 @@
 			<img class="logo" src="./img/logoICCF.jpg" alt="Comunidad Cristiana de Fe">
 		</figure>
 		<h2>Ingreso de Usuario</h2>
-		<form action="php/validarsesion.php">
-			<input type="text" placeholder="Nombre de Usuario" />
-			<input type="password" placeholder="Contraseña" />
+		<form action="./php/validarsesion.php" method="post">
+			<input id="txtusuario" name="txtusuario" type="text" placeholder="Nombre de Usuario" autofocus />
+			<input id="txtclave" name="txtclave" type="password" placeholder="Contraseña" />
 			<input type="submit" value="Ingresar" />
 		</form>
 	</section>

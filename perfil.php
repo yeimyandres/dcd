@@ -12,7 +12,7 @@
 <body>
 	<header>
 		<figure>
-			<a class="enlaceLogo">
+			<a class="enlaceLogo" href="./inicio.php">
 				<img class="imagenLogo" src="./img/logoICCF.jpg" alt="Comunife Cali">
 			</a>
 		</figure>
@@ -27,7 +27,7 @@
 			<h2>Configuración de Perfil de Usuario</h2>
 			<figure>
 				<a class="fotoPerfil" alt="Usuario Actual">
-					<img src="./img/perfiles/sinfoto.jpg" alt="Usuario Actual">
+					<img src="./img/usuarios/yeimyandres.jpg" alt="Usuario Actual">
 				</a>
 			</figure>
 			<form id="frmdatosbasicos" action="actualizadatos.php" method="post">
@@ -37,6 +37,7 @@
 				<input id="txtnombre" type="text" value="Usuario Actual" />
 				<label for="txtemail">Correo Electrónico</label>
 				<input id="txtemail" type="email" value="usuarioActual@correo.com" />
+				<label for="cbociudades">Ciudades</label>
 				<select name="cbociudades" id="cbociudades">
 					<option value=0>Seleccione su ciudad</option>
 					<option value=1>Cali</option>
@@ -44,6 +45,7 @@
 					<option value=3>Palmira</option>
 					<option value=4>Yumbo</option>
 				</select>
+				<label for="cbozonas">Zona de Ubicación</label>
 				<select name="cbozonas" id="cbozonas">
 					<option value=0>Seleccione su Zona</option>
 					<option value="1">Centro</option>
@@ -54,6 +56,7 @@
 				</select>
 				<input type="submit" value="Actualizar Datos Básicos" />
 			</form>
+			<hr>
 			<form action="actualizapassword.php" id="frmactualizapassword" method="post">
 				<label for="txtpassword1">Contraseña Anterior</label>
 				<input id="txtpassword1" type="password" />

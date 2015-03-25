@@ -19,6 +19,18 @@
 		</figure>
 		<h1>Proyecto Beta DCD - v1.0</h1>
 		<p>Pagina Inicial</p>
+		<div class="infousuario">
+			<figure>
+				<a class="iconousuario" href="./perfil.php">
+					<img src="./img/usuarios/yeimyandres.jpg">
+				</a>
+			</figure>
+			<ul>
+				<li>
+					<a class="opcioncabecera">Cerrar Sesión</a>
+				</li>
+			</ul>
+		</div>
 	</header>
 	<nav>
 		<?php include "./inc/menu.php"; ?>
