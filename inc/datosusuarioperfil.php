@@ -8,6 +8,8 @@
 		while($fila = mysqli_fetch_row($resultado)){
 			$nombreusuario = $fila[1];
 			$emailusuario = $fila[2];
+			$zonausuario = $fila[5];
+			$fotousuario = $fila[6];
 		}
 	}
 

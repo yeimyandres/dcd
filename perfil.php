@@ -45,8 +45,8 @@
 		<article>
 			<h2>Configuración de Perfil de Usuario</h2>
 			<figure>
-				<a class="fotoPerfil" alt="Usuario Actual">
-					<img src="./img/usuarios/yeimyandres.jpg" alt="Usuario Actual">
+				<a class="fotoPerfil">
+					<img <?php echo "src='./img/usuarios/".utf8_encode($fotousuario)."'" ?> />
 				</a>
 			</figure>
 			<form id="frmdatosbasicos" action="actualizadatos.php" method="post">
