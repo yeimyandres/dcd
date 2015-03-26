@@ -1,3 +1,22 @@
+<?php
+	session_start();
+
+	if (!isset($_SESSION['IdUsuario']))
+	{
+?>
+		<script language="Javascript">
+			window.alert('Acceso no autorizado');
+			window.location='../';
+		</script>
+<?php
+	}
+	else
+	{
+		date_default_timezone_set("America/Bogota");
+		$idusuario = $_SESSION['IdUsuario'];
+		include './inc/conexion.php';
+		include './inc/datosusuarioperfil.php';
+?>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -32,11 +51,11 @@
 			</figure>
 			<form id="frmdatosbasicos" action="actualizadatos.php" method="post">
 				<label for="txtusuario">Nombre de Usuario</label>
-				<input id="txtusuario" type="text" value="usuarioactual" />
+				<input id="txtusuario" type="text" <?php echo "value='".$idusuario."'" ?> />
 				<label for="txtnombre">Nombre Completo del Usuario</label>
-				<input id="txtnombre" type="text" value="Usuario Actual" />
+				<input id="txtnombre" type="text" <?php echo "value='".utf8_encode($nombreusuario)."'" ?> />
 				<label for="txtemail">Correo Electrónico</label>
-				<input id="txtemail" type="email" value="usuarioActual@correo.com" />
+				<input id="txtemail" type="email" <?php echo "value='".$emailusuario."'" ?> />
 				<label for="cbociudades">Ciudades</label>
 				<select name="cbociudades" id="cbociudades">
 					<option value=0>Seleccione su ciudad</option>
@@ -75,3 +94,6 @@
 </body>
 
 </html>
+<?php
+}
+?>
