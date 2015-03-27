@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-03-2015 a las 18:49:47
+-- Tiempo de generación: 27-03-2015 a las 18:50:52
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -45,6 +45,55 @@ INSERT INTO `ciudades` (`idciudad`, `nomciudad`) VALUES
 (3, 'Palmira'),
 (4, 'Jamundí'),
 (5, 'Yumbo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `itemsayuda`
+--
+
+DROP TABLE IF EXISTS `itemsayuda`;
+CREATE TABLE IF NOT EXISTS `itemsayuda` (
+  `iditemayuda` int(11) NOT NULL AUTO_INCREMENT,
+  `idseccionayuda` int(11) NOT NULL,
+  `titularayuda` varchar(125) NOT NULL,
+  `detalleayuda` varchar(255) NOT NULL,
+  PRIMARY KEY (`iditemayuda`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `itemsayuda`
+--
+
+INSERT INTO `itemsayuda` (`iditemayuda`, `idseccionayuda`, `titularayuda`, `detalleayuda`) VALUES
+(1, 1, 'Registro en la plataforma', 'Para registrarse, debe hacer clic en el enlace "Registrarme" de la página de ingreso de la plataforma, diligenciar los datos solicitados y hacer clic en el botón "Registrar".  Luego revise su correo y siga los pasos para ingresar con su usuario.'),
+(2, 3, 'Selección de día', 'Por defecto se presenta el pasaje y el formato de registro del devocional para el día actual.  Si desea cambiarlo primero se debe hacer clic en el botón azul con el año actual, luego en el botón azul con el mes actual y por último clic en el día deseado.'),
+(3, 3, 'Diligenciamiento del formato', 'Para diligenciar el formato, debe hacer clic en cada uno de los enlaces que se encuentran debajo del pasaje del día (Dios Me Habla, Hablo con Dios, Hablo con Mi Lider) y se desplegarán cajas de texto para registrar la información del devocional.');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `seccionesayuda`
+--
+
+DROP TABLE IF EXISTS `seccionesayuda`;
+CREATE TABLE IF NOT EXISTS `seccionesayuda` (
+  `idseccionayuda` int(11) NOT NULL AUTO_INCREMENT,
+  `nomseccionayuda` varchar(35) NOT NULL,
+  PRIMARY KEY (`idseccionayuda`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `seccionesayuda`
+--
+
+INSERT INTO `seccionesayuda` (`idseccionayuda`, `nomseccionayuda`) VALUES
+(1, 'Ingreso a la plataforma'),
+(2, 'Aspectos Básicos'),
+(3, 'Devocional'),
+(4, 'Comentarios'),
+(5, 'Favoritos'),
+(6, 'Perfil de Usuario');
 
 -- --------------------------------------------------------
 

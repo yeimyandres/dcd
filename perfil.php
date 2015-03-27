@@ -36,7 +36,7 @@
 			</a>
 		</figure>
 		<h1>Proyecto Beta DCD - v1.0</h1>
-		<p>Pagina Inicial</p>
+		<p>Configuración del perfil de Usuario</p>
 	</header>
 	<nav>
 		<?php include "./inc/menu.php"; ?>
@@ -59,19 +59,34 @@
 				<label for="cbociudades">Ciudades</label>
 				<select name="cbociudades" id="cbociudades">
 					<option value=0>Seleccione su ciudad</option>
-					<option value=1>Cali</option>
-					<option value=2>Bogotá</option>
-					<option value=3>Palmira</option>
-					<option value=4>Yumbo</option>
+					<?php
+						$cadenaSQL = "SELECT * FROM ciudades ORDER BY nomciudad";
+						if($resultado = mysqli_query($enlace, $cadenaSQL)){
+							while($fila = mysqli_fetch_row($resultado)){
+								echo "<option value=$fila[0]";
+								if ($fila[0] == $ciudadusuario) {
+									echo " selected";
+								}
+								echo ">".utf8_encode($fila[1])."</option>";
+							}
+						}
+					?>
 				</select>
 				<label for="cbozonas">Zona de Ubicación</label>
 				<select name="cbozonas" id="cbozonas">
 					<option value=0>Seleccione su Zona</option>
-					<option value="1">Centro</option>
-					<option value="2">Norte</option>
-					<option value="3">Occidente</option>
-					<option value="4">Oriente</option>
-					<option value="5">Sur</option>
+					<?php
+						$cadenaSQL = "SELECT idzona, nomzona FROM ZONAS WHERE idciudad = $ciudadusuario ORDER BY nomzona";
+						if($resultado = mysqli_query($enlace, $cadenaSQL)){
+							while($fila = mysqli_fetch_row($resultado)){
+								echo "<option value=$fila[0]";
+								if ($fila[0] == $zonausuario) {
+									echo " selected";
+								}
+								echo ">".utf8_encode($fila[1])."</option>";
+							}
+						}
+					?>
 				</select>
 				<input type="submit" value="Actualizar Datos Básicos" />
 			</form>

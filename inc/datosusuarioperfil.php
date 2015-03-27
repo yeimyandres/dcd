@@ -13,4 +13,9 @@
 		}
 	}
 
+	$cadenaSQL = "SELECT idciudad FROM zonas WHERE idzona=".$zonausuario;
+	$resultado = mysqli_query($enlace, $cadenaSQL);
+	$fila = mysqli_fetch_row($resultado);
+	$ciudadusuario = $fila[0];
+
 ?>

@@ -13,6 +13,8 @@
 	else
 	{
 		date_default_timezone_set("America/Bogota");
+		include "./inc/conexion.php";
+		$enlace = Conectarse();
 		$idusuario = $_SESSION['IdUsuario'];
 		$nombreusuario = $_SESSION['NombreUsuario'];
 		$imagenusuario = $_SESSION['ImagenUsuario'];
@@ -37,7 +39,7 @@
 			</a>
 		</figure>
 		<h1>Proyecto Beta DCD - v1.0</h1>
-		<p>Devocional Diario</p>
+		<p>Ayuda para el manejo de la plataforma</p>
 		<div class="infousuario">
 			<figure>
 				<a class="iconousuario" href="./perfil.php">
@@ -54,27 +56,25 @@
 	<nav>
 		<?php include "./inc/menu.php"; ?>
 	</nav>
-	<section>
-		<article class="seleccionfecha">
-			<?php include "./php/selectoresfecha.php"; ?>
-		</article>
-		<article class="calendario">
-			<?php include "./php/calendario.php"; ?>
-		</article>
-		<article class="pasaje">
-			<?php include "./php/pasaje.php"; ?>			
-		</article>
-		<article class="devocional">
-			<h2>MI DEVOCIONAL</h2>
-			<?php include "./php/opcionesdevocional.php"; ?>
-		</article>
-		<article class="comentarios">
-			<h2>Comentarios del pasaje del día de hoy</h2>
-			<textarea name="txtcomentarios" id="txtcomentarios" cols="30" rows="5"></textarea>
-			<input type="button" value="Guardar">
-			<input type="button" value="Terminar">
-		</article>
-	</section>
+	<?php
+		$cadenaSQL = "SELECT idseccionayuda, nomseccionayuda FROM seccionesayuda ORDER BY idseccionayuda";
+		if($resultado = mysqli_query($enlace, $cadenaSQL)){
+			while($fila = mysqli_fetch_row($resultado)){
+				echo "<section class='seccionayuda' id=$fila[0]>";
+				$cadenaSQL = "SELECT i.titularayuda, i.detalleayuda, s.nomseccionayuda FROM itemsayuda AS i, seccionesayuda AS s WHERE i.idseccionayuda = ".$fila[0]." AND i.idseccionayuda=s.idseccionayuda";
+				$resultado2 = mysqli_query($enlace, $cadenaSQL);
+				echo "<h2 class='nombreseccion' id='seccion".$fila[0]."'>".utf8_encode($fila[1])."</h2>";
+				while($fila2 = mysqli_fetch_row($resultado2)){
+					echo "<article class='articuloayuda' id='articuloseccion".$fila[0]."'>";
+					echo "<p class='titular'>".utf8_encode($fila2[0])."</p>";
+					echo "<p class='detalle'>".utf8_encode($fila2[1])."</p>";
+					echo "</article>";
+				}
+				echo "</section>";
+			}
+		}
+	?>
+
 	<footer>
 		<p class="piedepagina">WEBPro Soluciones</p>
 		<p class="piedepagina">2015</p>
@@ -84,15 +84,9 @@
 	<script type="text/javascript">
 
 		$(document).ready(function(){
-			$(".botonaños").click(function(){
-				$(".secaños").slideToggle("400");
-			});
-			$(".botonmeses").click(function(){
-				$(".secmeses").slideToggle("1000");
-			});
-			$(".opciondevocional").click(function(){
-				var nombre = "sub" + $(this).attr("id");
-				$("."+nombre).slideToggle("500");
+			$("h2.nombreseccion").click(function(){
+				var idseccion = $(this).attr("id");
+				$("article.articuloayuda#articulo"+idseccion).slideToggle(400);
 			});
 		});
 
