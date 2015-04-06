@@ -23,11 +23,21 @@
 			<img class="logo" src="./img/logoICCF.jpg" alt="Comunidad Cristiana de Fe">
 		</figure>
 		<h2>Ingreso de Usuario</h2>
-		<form action="./php/validarsesion.php" method="post">
-			<input id="txtusuario" name="txtusuario" type="text" placeholder="Nombre de Usuario" autofocus />
-			<input id="txtclave" name="txtclave" type="password" placeholder="Contraseña" />
+		<form id="frmingreso" action="./php/validarsesion.php" method="post">
+			<input id="txtusuarioi" name="txtusuarioi" type="text" placeholder="Nombre de Usuario" autofocus />
+			<input id="txtclavei" name="txtclavei" type="password" placeholder="Contraseña" />
 			<input type="submit" value="Ingresar" />
 		</form>
+		<br>
+		<a class="registrarse">Registrarme</a>
+		<form id="frmregistro" action="./php/registrarusuario.php" method="post">
+			<input id="txtusuarior" name="txtusuarior" type="text" placeholder="Nombre de Usuario"/>
+			<input id="txtnombrer" name="txtnombrer" type="text" placeholder="Nombres y apellidos completos" />
+			<input id="txtemailr" name="txtemailr" type="text" placeholder="Correo Electrónico">
+			<input id="txtclaver1" name="txtclaver1" type="password" placeholder="Contraseña" />
+			<input id="txtclaver2" name="txtclaver2" type="password" placeholder="Confirmar Contraseña" />
+			<input type="submit" value="Registrar" />
+		</form>		
 	</section>
 
 	<footer>
@@ -36,5 +46,24 @@
 	</footer>
 
 </body>
+
+	<script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("a.registrarse").click(function(){
+				if($("form#frmregistro").is(":visible")){
+				    $("form#frmregistro").hide(400);
+				    $("form#frmingreso").show(400);
+				    $(this).html("Registrarme");
+				    $("input#txtusuarioi").focus();
+				}else{
+				    $("form#frmregistro").show(400);
+				    $("form#frmingreso").hide(400);
+				    $(this).html("Ingresar");
+				    $("input#txtusuarior").focus();
+				}				
+			});
+		});
+	</script>
 
 </html>
