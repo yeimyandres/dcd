@@ -16,6 +16,7 @@
 		$idusuario = $_SESSION['IdUsuario'];
 		$nombreusuario = $_SESSION['NombreUsuario'];
 		$imagenusuario = $_SESSION['ImagenUsuario'];
+		include "./inc/conexion.php";
 ?>
 <!DOCTYPE html>
 

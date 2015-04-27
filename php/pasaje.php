@@ -1,3 +1,27 @@
+<?php
+	
+/*	$enlace = Conectarse();
+
+	$dia = $_GET["diaactual"];
+	$mes = $_GET["mesactual"];
+	$año = $_GET["añoactual"];
+
+	$result = mysqli_query($link,"SELECT DISTINCT libro FROM devocionales WHERE dia=$dia AND mes=$mes AND año=$año");
+	if (mysqli_num_rows($result)>=1)
+	{
+		while(mysqli_fetch_row($result))
+		{
+			$result1 = mysql_query($link,"SELECT capitulo, versiculo FROM devocionales WHERE dia=$dia AND mes=$mes AND año=$año AND libro=$libro" ORDER BY capitulo, versiculo);
+			
+		}
+	}
+
+
+*/
+
+?>
+
+
 <h2>Juan 3:16-18</h2>
 <p class="referencia">16</p>
 <p class="texto">
