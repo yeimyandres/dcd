@@ -95,6 +95,9 @@
 				var nombre = "sub" + $(this).attr("id");
 				$("."+nombre).slideToggle("500");
 			});
+			$(".opciondia").click(function() {
+				var numero=$(this).html();
+			});
 		});
 
 	</script>
