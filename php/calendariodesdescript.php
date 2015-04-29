@@ -1,7 +1,17 @@
 <?php
 
-	$diasmesactual = date("t");
+	$diaactual = $_POST["dia"];
+	$mesactual = $_POST["mes"];
+	$añoactual = $_POST["year"];
+	$meses = array("0","enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
+
+	$diasmesactual = date('t', mktime(0, 0, 0, $mesactual, 1, $añoactual));
+	if($diaactual>$diasmesactual){
+		$diaactual=$diasmesactual;
+	}
+
 	$diainicial = date("w", mktime(0,0,0,$mesactual,1,$añoactual));
+
 	echo "<table>";
 	echo "<tr>";
 	echo "<th>Dom</th>";
@@ -31,6 +41,9 @@
 					echo "<td></td>";
 				}
 				echo "<td class='opciondia $clase'>$i</td>";
+				if($diainicial==6){
+					echo "</tr>";
+				}
 			}
 		}else{
 			echo "<td class='opciondia $clase'>$i</td>";
@@ -44,6 +57,6 @@
 	}
 	echo "</tr></table>";
 
-	echo "<div id='fechaactual'><b>Fecha Actual Seleccionada:</b><div id='mifecha'>".date("j")." de ".$meses[date("n")]." de ".date("Y")."</div></div>";
+	echo "<div id='fechaactual'><b>Fecha Actual Seleccionada:</b><div id='mifecha'>".$diaactual." de ".$meses[$mesactual]." de ".$añoactual."</div></div>";
 
 ?>

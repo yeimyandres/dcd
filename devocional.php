@@ -60,7 +60,7 @@
 		<article class="seleccionfecha">
 			<?php include "./php/selectoresfecha.php"; ?>
 		</article>
-		<article class="calendario">
+		<article class="calendario" id="seccioncalendario">
 			<?php include "./php/calendario.php"; ?>
 		</article>
 		<article class="pasaje" id="seccionpasaje">
@@ -93,6 +93,7 @@
 				var añoactual=$(this).attr("id");
 				$(".botonaños").html(añoactual);
 				$(".secaños").slideToggle("400");
+				mostrarcalendario();
 			});
 			$(".botonmeses").click(function(){
 				$(".secmeses").slideToggle("1000");
@@ -100,6 +101,14 @@
 			$(".opciondevocional").click(function(){
 				var nombre = "sub" + $(this).attr("id");
 				$("."+nombre).slideToggle("500");
+			});
+			$(".selectormes").click(function(){
+				var idmes = $(this).attr("id");
+				var nommes = $(this).html();
+				$(".botonmeses").attr("id",idmes);
+				$(".botonmeses").html(nommes);
+				$(".secmeses").slideToggle("1000");
+				mostrarcalendario();
 			});
 			$(".opciondia").click(function() {
 				var numero = $(this).html();
@@ -118,18 +127,22 @@
 		});
 
 		function mostrarcalendario(){
-				var numero = $(".diaseleccionado").html();
+				var fecha = new Date();
+				var dia = fecha.getDate();
 				var mes = $(".botonmeses").attr("id");
 				var year = $(".botonaños").html();			
 				$.ajax({
 					url: './php/calendariodesdescript.php',
 					type: 'POST',
 					dataType: 'html',
-					data: "mes="+mes+"&year="+year+"&dia="+numero,
+					data: "mes="+mes+"&year="+year+"&dia="+dia,
 				})
 				.done(function(respuesta) {
-					$("#seccionpasaje").html(respuesta);
-				})			
+					$("#seccioncalendario").html(respuesta);
+				})
+				.error(function(a,b,c){
+					alert("Datos error: "+a+", "+b+", "+c)
+				});			
 		}
 
 	</script>

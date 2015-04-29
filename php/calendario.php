@@ -1,6 +1,6 @@
 <?php
 
-	$diasmesactual = date("t");
+	$diasmesactual = date('t', mktime(0, 0, 0, $mesactual, 1, $añoactual));
 	$diainicial = date("w", mktime(0,0,0,$mesactual,1,$añoactual));
 	echo "<table>";
 	echo "<tr>";
