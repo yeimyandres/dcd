@@ -19,7 +19,7 @@
 
 	?>
 	<li class="principal">
-		<a class="botonmeses"><?php echo $meses[$mesactual]; ?></a>
+		<a class="botonmeses"<?php echo " id='$mesactual'> ".$meses[$mesactual]; ?></a>
 	</li>
 	<?php
 

@@ -17,6 +17,7 @@
 		$nombreusuario = $_SESSION['NombreUsuario'];
 		$imagenusuario = $_SESSION['ImagenUsuario'];
 		include "./inc/conexion.php";
+		$enlace = Conectarse();
 ?>
 <!DOCTYPE html>
 
@@ -62,7 +63,7 @@
 		<article class="calendario">
 			<?php include "./php/calendario.php"; ?>
 		</article>
-		<article class="pasaje">
+		<article class="pasaje" id="seccionpasaje">
 			<?php include "./php/pasaje.php"; ?>			
 		</article>
 		<article class="devocional">
@@ -88,6 +89,11 @@
 			$(".botonaños").click(function(){
 				$(".secaños").slideToggle("400");
 			});
+			$(".selectoraño").click(function(){
+				var añoactual=$(this).attr("id");
+				$(".botonaños").html(añoactual);
+				$(".secaños").slideToggle("400");
+			});
 			$(".botonmeses").click(function(){
 				$(".secmeses").slideToggle("1000");
 			});
@@ -96,9 +102,35 @@
 				$("."+nombre).slideToggle("500");
 			});
 			$(".opciondia").click(function() {
-				var numero=$(this).html();
+				var numero = $(this).html();
+				var mes = $(".botonmeses").attr("id");
+				var year = $(".botonaños").html();
+				$.ajax({
+					url: './php/pasajedesdescript.php',
+					type: 'POST',
+					dataType: 'html',
+					data: "mes="+mes+"&year="+year+"&dia="+numero,
+				})
+				.done(function(respuesta) {
+					$("#seccionpasaje").html(respuesta);
+				})
 			});
 		});
+
+		function mostrarcalendario(){
+				var numero = $(".diaseleccionado").html();
+				var mes = $(".botonmeses").attr("id");
+				var year = $(".botonaños").html();			
+				$.ajax({
+					url: './php/calendariodesdescript.php',
+					type: 'POST',
+					dataType: 'html',
+					data: "mes="+mes+"&year="+year+"&dia="+numero,
+				})
+				.done(function(respuesta) {
+					$("#seccionpasaje").html(respuesta);
+				})			
+		}
 
 	</script>
 

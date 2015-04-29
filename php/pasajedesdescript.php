@@ -1,10 +1,12 @@
 <?php
 	
+	include "../inc/conexion.php";
+
 	$enlace = Conectarse();
 
-	$dia = $diaactual;
-	$mes = $mesactual;
-	$año = $añoactual;
+	$dia = $_POST["dia"];
+	$mes = $_POST["mes"];
+	$año = $_POST["year"];
 
 	$resultado = mysqli_query($enlace,"SELECT DISTINCT libro FROM devocionales WHERE dia=$dia AND mes=$mes AND year=$año ORDER BY libro");
 	while($libro=mysqli_fetch_row($resultado))
