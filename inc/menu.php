@@ -1,4 +1,7 @@
 <ul>
+	<li class="movil">
+		<a class="opcionMovil"><img src="./img/menumovil.png" alt="menumovil"></a>
+	</li>
 	<li>
 		<a href="./devocional.php" class="opcionMenu">devocional</a>
 	</li>
