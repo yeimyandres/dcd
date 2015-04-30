@@ -86,6 +86,9 @@
 	<script type="text/javascript">
 
 		$(document).ready(function(){
+			$("#menumovil").click(function(){
+				$(".nomovil").slideToggle(400);
+			});
 			$(".botonaños").click(function(){
 				$(".secaños").slideToggle("400");
 			});
