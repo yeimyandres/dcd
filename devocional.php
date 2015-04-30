@@ -126,6 +126,9 @@
 				.done(function(respuesta) {
 					$("#seccionpasaje").html(respuesta);
 				})
+				.fail(function(a,b,c){
+					alert("Datos error: "+a+", "+b+", "+c)
+				});
 			});
 		});
 
@@ -143,9 +146,9 @@
 				.done(function(respuesta) {
 					$("#seccioncalendario").html(respuesta);
 				})
-				.error(function(a,b,c){
+				.fail(function(a,b,c){
 					alert("Datos error: "+a+", "+b+", "+c)
-				});			
+				});
 		}
 
 	</script>

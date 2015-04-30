@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+	if (!isset($_SESSION['IdUsuario']))
+	{
+		session_unset();
+		session_destroy();
+	}
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
