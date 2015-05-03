@@ -115,22 +115,28 @@
 			});
 			$(".opciondia").click(function() {
 				var numero = $(this).html();
-				var mes = $(".botonmeses").attr("id");
-				var year = $(".botonaños").html();
-				$.ajax({
-					url: './php/pasajedesdescript.php',
-					type: 'POST',
-					dataType: 'html',
-					data: "mes="+mes+"&year="+year+"&dia="+numero,
-				})
-				.done(function(respuesta) {
-					$("#seccionpasaje").html(respuesta);
-				})
-				.fail(function(a,b,c){
-					alert("Datos error: "+a+", "+b+", "+c)
-				});
+				mostrarpasaje(numero);
 			});
 		});
+		function mostrarpasaje(numero){
+			var mes = $(".botonmeses").attr("id");
+			var year = $(".botonaños").html();
+
+			alert(numero);
+
+			$.ajax({
+				url: './php/pasajedesdescript.php',
+				type: 'POST',
+				dataType: 'html',
+				data: "mes="+mes+"&year="+year+"&dia="+numero,
+			})
+			.done(function(respuesta) {
+				$("#seccionpasaje").html(respuesta);
+			})
+			.fail(function(a,b,c){
+				alert("Datos error: "+a+", "+b+", "+c)
+			});			
+		}
 
 		function mostrarcalendario(){
 				var fecha = new Date();
@@ -145,6 +151,10 @@
 				})
 				.done(function(respuesta) {
 					$("#seccioncalendario").html(respuesta);
+					$(".opciondia").click(function() {
+						var numero = $(this).html();
+						mostrarpasaje(numero);
+					});
 				})
 				.fail(function(a,b,c){
 					alert("Datos error: "+a+", "+b+", "+c)
