@@ -115,14 +115,14 @@
 			});
 			$(".opciondia").click(function() {
 				var numero = $(this).html();
-				mostrarpasaje(numero);
+				var diaelegido = $(this);
+				mostrarpasaje(numero,diaelegido);
 			});
 		});
-		function mostrarpasaje(numero){
+		function mostrarpasaje(numero,diaelegido){
+			var meses = ["meses","enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 			var mes = $(".botonmeses").attr("id");
 			var year = $(".botonaños").html();
-
-			alert(numero);
 
 			$.ajax({
 				url: './php/pasajedesdescript.php',
@@ -132,6 +132,9 @@
 			})
 			.done(function(respuesta) {
 				$("#seccionpasaje").html(respuesta);
+				$(".diaactual").removeClass('diaactual');
+				diaelegido.addClass('diaactual');
+				$("#fechaactual").html("<b>Fecha Actual Seleccionada:</b><div id='mifecha'>"+numero+" de "+meses[mes]+" de "+year+"</div>");
 			})
 			.fail(function(a,b,c){
 				alert("Datos error: "+a+", "+b+", "+c)
@@ -153,7 +156,8 @@
 					$("#seccioncalendario").html(respuesta);
 					$(".opciondia").click(function() {
 						var numero = $(this).html();
-						mostrarpasaje(numero);
+						var diaelegido = $(this);
+						mostrarpasaje(numero,diaelegido);
 					});
 				})
 				.fail(function(a,b,c){
