@@ -109,6 +109,17 @@
 	</footer>
 </body>
 
+	<script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#menumovil").click(function(){
+				$(".nomovil").slideToggle(400);
+			});
+		});
+		
+	</script>
+
 </html>
 <?php
 }
