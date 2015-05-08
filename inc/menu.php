@@ -1,6 +1,6 @@
 <ul>
 	<li class="movil">
-		<a class="opcionMovil" id="menumovil"><img src="./img/menumovil.png" alt="menumovil"></a>
+		<a class="opcionMovil" id="menumovil"><img src="./img/menumovil_w.png" alt="menumovil"></a>
 	</li>
 	<li class="nomovil">
 		<a href="./devocional.php" class="opcionMenu">devocional</a>
