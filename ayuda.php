@@ -58,13 +58,24 @@
 	</nav>
 	<?php
 		$cadenaSQL = "SELECT idseccionayuda, nomseccionayuda FROM seccionesayuda ORDER BY idseccionayuda";
-		if($resultado = mysqli_query($enlace, $cadenaSQL)){
-			while($fila = mysqli_fetch_row($resultado)){
+		if($resultado = mysqli_query($enlace, $cadenaSQL))
+		{
+			while($fila = mysqli_fetch_row($resultado))
+			{
 				echo "<section class='seccionayuda' id=$fila[0]>";
 				$cadenaSQL = "SELECT i.titularayuda, i.detalleayuda, s.nomseccionayuda FROM itemsayuda AS i, seccionesayuda AS s WHERE i.idseccionayuda = ".$fila[0]." AND i.idseccionayuda=s.idseccionayuda";
 				$resultado2 = mysqli_query($enlace, $cadenaSQL);
-				echo "<h2 class='nombreseccion' id='seccion".$fila[0]."'>".utf8_encode($fila[1])."</h2>";
-				while($fila2 = mysqli_fetch_row($resultado2)){
+				$registros = mysqli_num_rows($resultado2);
+				if($registros>0){
+					if($registros==1){
+						$tema = "tema";
+					}else{
+						$tema = "temas";
+					}
+				}
+				echo "<h2 class='nombreseccion' id='seccion".$fila[0]."'>".utf8_encode($fila[1])." (".$registros." ".$tema.")</h2>";
+				while($fila2 = mysqli_fetch_row($resultado2))
+				{
 					echo "<article class='articuloayuda' id='articuloseccion".$fila[0]."'>";
 					echo "<p class='titular'>".utf8_encode($fila2[0])."</p>";
 					echo "<p class='detalle'>".utf8_encode($fila2[1])."</p>";
