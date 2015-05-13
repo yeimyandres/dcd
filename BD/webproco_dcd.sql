@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2015 a las 19:28:55
+-- Tiempo de generación: 13-05-2015 a las 22:04:05
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `webproco_dcd`
 --
+CREATE DATABASE IF NOT EXISTS `webproco_dcd` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `webproco_dcd`;
 
 -- --------------------------------------------------------
 
@@ -77,20 +79,22 @@ CREATE TABLE IF NOT EXISTS `devocionales` (
   `iddevocional` int(11) NOT NULL AUTO_INCREMENT,
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
-  `año` int(11) NOT NULL,
+  `anual` int(11) NOT NULL,
   `libro` int(11) NOT NULL,
   `capitulo` int(11) NOT NULL,
   `versiculo` int(11) NOT NULL,
   PRIMARY KEY (`iddevocional`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `devocionales`
 --
 
-INSERT INTO `devocionales` (`iddevocional`, `dia`, `mes`, `año`, `libro`, `capitulo`, `versiculo`) VALUES
+INSERT INTO `devocionales` (`iddevocional`, `dia`, `mes`, `anual`, `libro`, `capitulo`, `versiculo`) VALUES
 (1, 28, 4, 2015, 4, 2, 1),
-(2, 28, 4, 2015, 4, 2, 4);
+(2, 28, 4, 2015, 4, 2, 2),
+(3, 28, 4, 2015, 4, 2, 3),
+(4, 28, 4, 2015, 4, 2, 4);
 
 -- --------------------------------------------------------
 
