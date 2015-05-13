@@ -99,6 +99,9 @@
 				var idseccion = $(this).attr("id");
 				$("article.articuloayuda#articulo"+idseccion).slideToggle(400);
 			});
+			$("#menumovil").click(function(){
+				$(".nomovil").slideToggle(400);
+			});			
 		});
 
 	</script>
