@@ -77,14 +77,14 @@
 				<select name="cbozonas" id="cbozonas">
 					<option value=0>Seleccione su Zona</option>
 					<?php
-						$cadenaSQL = "SELECT idzona, nomzona FROM ZONAS WHERE idciudad = $ciudadusuario ORDER BY nomzona";
-						if($resultado = mysqli_query($enlace, $cadenaSQL)){
-							while($fila = mysqli_fetch_row($resultado)){
-								echo "<option value=$fila[0]";
-								if ($fila[0] == $zonausuario) {
+						$cadenaSQL = "SELECT idzona, nomzona FROM zonas WHERE idciudad = $ciudadusuario ORDER BY nomzona";
+						if($resultado1 = mysqli_query($enlace, $cadenaSQL)){
+							while($fila1 = mysqli_fetch_row($resultado1)){
+								echo "<option value=$fila1[0]";
+								if ($fila1[0] == $zonausuario) {
 									echo " selected";
 								}
-								echo ">".utf8_encode($fila[1])."</option>";
+								echo ">".utf8_encode($fila1[1])."</option>";
 							}
 						}
 					?>
