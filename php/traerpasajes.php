@@ -18,13 +18,13 @@
 		{
 			$result1 = mysqli_query($enlace,"SELECT nomlibro FROM libros Where idlibro=".$libro[0]);
 			$row1 = mysqli_fetch_row($result1);
-			$result2 = mysqli_query($enlace,"SELECT d.iddevocional, d.capitulo, d.versiculoini, d.versiculofin, e.escritura FROM devocionales AS d, escrituras AS e WHERE e.capitulo=d.capitulo AND e.versiculo=d.versiculo AND e.idlibro=".$libro[0]." AND d.dia=$dia AND d.mes=$mes AND d.anual=$year AND d.libro=".$libro[0]);
+			$result2 = mysqli_query($enlace,"SELECT iddevocional, capitulo, versiculoini, versiculofin FROM devocionales WHERE dia=$dia AND mes=$mes AND anual=$year AND libro=".$libro[0]." ORDER BY libro");
 			while($row2=mysqli_fetch_row($result2)){
 				$pasaje = "<option value='".$row[0]."'>";
-				if($row[2]==$row[3]){
-					$pasaje .= utf8_encode($row1[0]).", ".$row[1].":".$row[2];	
+				if($row2[2]==$row2[3]){
+					$pasaje .= utf8_encode($row1[0]).", ".$row2[1].": ".$row2[2];	
 				}else{
-					$pasaje .= utf8_encode($row1[0]).", ".$row[1].":".$row[2]."-".$row[3];
+					$pasaje .= utf8_encode($row1[0]).", ".$row2[1].":".$row2[2]."-".$row2[3];
 				}
 				$pasaje .= "</option>";
 				echo $pasaje;
