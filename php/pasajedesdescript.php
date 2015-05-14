@@ -18,12 +18,22 @@
 		{
 			$result1 = mysqli_query($enlace,"SELECT nomlibro FROM libros Where idlibro=".$libro[0]);
 			$row1 = mysqli_fetch_row($result1);
-			echo "<h2>".utf8_encode($row1[0])."</h2>";
-			$result2 = mysqli_query($enlace,"SELECT d.capitulo, d.versiculo, e.escritura FROM devocionales AS d, escrituras AS e WHERE e.capitulo=d.capitulo AND e.versiculo=d.versiculo AND e.idlibro=".$libro[0]." AND d.dia=$dia AND d.mes=$mes AND d.anual=$year AND d.libro=".$libro[0]);
+			$result2 = mysqli_query($enlace,"SELECT capitulo, versiculoini, versiculofin FROM devocionales WHERE dia=$dia AND mes=$mes AND anual=$year AND libro=".$libro[0]." ORDER BY libro");
 			while($row =mysqli_fetch_row($result2))
 			{
-				echo "<p class='referencia'>[".$row[0].":".$row[1]."]</p>";
-				echo "<p class='texto'>".utf8_decode($row[2])."</p>";
+				if($row[1]==$row[2]){
+					$referencia = utf8_encode($row1[0]).", ".$row[0].":".$row[1];
+				}else{
+					$referencia = utf8_encode($row1[0]).", ".$row[0].": ".$row[1]." - ".$row[2];
+				}
+				echo "<h2>".$referencia."</h2>";	
+				for ($i=$row[1]; $i <=$row[2] ; $i++) { 
+					$cadenaSQL = "SELECT escritura FROM escrituras WHERE idlibro = ".$libro[0]." AND capitulo = ".$row[0]." AND versiculo = ".$i;
+					$resultver = mysqli_query($enlace,$cadenaSQL);
+					$filaver = mysqli_fetch_row($resultver);
+					echo "<p class='referencia'>[".$row[0].":".$i."]</p>";
+					echo "<p class='texto'>".utf8_decode($filaver[0])."</p>";
+				}
 			}
 			echo "<hr>";
 		}

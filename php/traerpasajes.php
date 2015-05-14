@@ -18,17 +18,17 @@
 		{
 			$result1 = mysqli_query($enlace,"SELECT nomlibro FROM libros Where idlibro=".$libro[0]);
 			$row1 = mysqli_fetch_row($result1);
-			$result2 = mysqli_query($enlace,"SELECT d.capitulo, d.versiculo, e.escritura FROM devocionales AS d, escrituras AS e WHERE e.capitulo=d.capitulo AND e.versiculo=d.versiculo AND e.idlibro=".$libro[0]." AND d.dia=$dia AND d.mes=$mes AND d.anual=$year AND d.libro=".$libro[0]);
-			$row=mysqli_fetch_row($result2);
-			$primero = $row[1];
-			$result3 = mysqli_query($enlace,"SELECT d.capitulo, d.versiculo, e.escritura FROM devocionales AS d, escrituras AS e WHERE e.capitulo=d.capitulo AND e.versiculo=d.versiculo AND e.idlibro=".$libro[0]." AND d.dia=$dia AND d.mes=$mes AND d.anual=$year AND d.libro=".$libro[0]." ORDER BY d.capitulo, d.versiculo DESC LIMIT 1");
-			$row3=mysqli_fetch_row($result3);
-			$capitulo = $row3[0];
-			$ultimo = $row3[1];
-			$pasaje = "<option value=''>";
-			$pasaje .= utf8_encode($row1[0]).", ".$capitulo.":".$primero."-".$ultimo;
-			$pasaje .= "</option>";
-			echo $pasaje;
+			$result2 = mysqli_query($enlace,"SELECT d.iddevocional, d.capitulo, d.versiculoini, d.versiculofin, e.escritura FROM devocionales AS d, escrituras AS e WHERE e.capitulo=d.capitulo AND e.versiculo=d.versiculo AND e.idlibro=".$libro[0]." AND d.dia=$dia AND d.mes=$mes AND d.anual=$year AND d.libro=".$libro[0]);
+			while($row2=mysqli_fetch_row($result2)){
+				$pasaje = "<option value='".$row[0]."'>";
+				if($row[2]==$row[3]){
+					$pasaje .= utf8_encode($row1[0]).", ".$row[1].":".$row[2];	
+				}else{
+					$pasaje .= utf8_encode($row1[0]).", ".$row[1].":".$row[2]."-".$row[3];
+				}
+				$pasaje .= "</option>";
+				echo $pasaje;
+			}
 		}
 
 	}else{

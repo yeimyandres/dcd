@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2015 a las 22:04:05
+-- Tiempo de generación: 14-05-2015 a las 18:53:06
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,6 +37,11 @@ CREATE TABLE IF NOT EXISTS `biblias` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
+-- Truncar tablas antes de insertar `biblias`
+--
+
+TRUNCATE TABLE `biblias`;
+--
 -- Volcado de datos para la tabla `biblias`
 --
 
@@ -57,6 +62,11 @@ CREATE TABLE IF NOT EXISTS `ciudades` (
   PRIMARY KEY (`idciudad`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+--
+-- Truncar tablas antes de insertar `ciudades`
+--
+
+TRUNCATE TABLE `ciudades`;
 --
 -- Volcado de datos para la tabla `ciudades`
 --
@@ -82,19 +92,25 @@ CREATE TABLE IF NOT EXISTS `devocionales` (
   `anual` int(11) NOT NULL,
   `libro` int(11) NOT NULL,
   `capitulo` int(11) NOT NULL,
-  `versiculo` int(11) NOT NULL,
+  `versiculoini` int(11) NOT NULL,
+  `versiculofin` int(11) NOT NULL,
   PRIMARY KEY (`iddevocional`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
+--
+-- Truncar tablas antes de insertar `devocionales`
+--
+
+TRUNCATE TABLE `devocionales`;
 --
 -- Volcado de datos para la tabla `devocionales`
 --
 
-INSERT INTO `devocionales` (`iddevocional`, `dia`, `mes`, `anual`, `libro`, `capitulo`, `versiculo`) VALUES
-(1, 28, 4, 2015, 4, 2, 1),
-(2, 28, 4, 2015, 4, 2, 2),
-(3, 28, 4, 2015, 4, 2, 3),
-(4, 28, 4, 2015, 4, 2, 4);
+INSERT INTO `devocionales` (`iddevocional`, `dia`, `mes`, `anual`, `libro`, `capitulo`, `versiculoini`, `versiculofin`) VALUES
+(1, 14, 5, 2015, 5, 3, 6, 12),
+(5, 15, 5, 2015, 18, 3, 2, 8),
+(7, 16, 5, 2015, 20, 2, 3, 3),
+(8, 14, 5, 2015, 23, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +127,11 @@ CREATE TABLE IF NOT EXISTS `itemsayuda` (
   PRIMARY KEY (`iditemayuda`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+--
+-- Truncar tablas antes de insertar `itemsayuda`
+--
+
+TRUNCATE TABLE `itemsayuda`;
 --
 -- Volcado de datos para la tabla `itemsayuda`
 --
@@ -134,6 +155,11 @@ CREATE TABLE IF NOT EXISTS `libros` (
   PRIMARY KEY (`idlibro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncar tablas antes de insertar `libros`
+--
+
+TRUNCATE TABLE `libros`;
 --
 -- Volcado de datos para la tabla `libros`
 --
@@ -220,6 +246,11 @@ CREATE TABLE IF NOT EXISTS `seccionesayuda` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
+-- Truncar tablas antes de insertar `seccionesayuda`
+--
+
+TRUNCATE TABLE `seccionesayuda`;
+--
 -- Volcado de datos para la tabla `seccionesayuda`
 --
 
@@ -251,6 +282,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncar tablas antes de insertar `usuarios`
+--
+
+TRUNCATE TABLE `usuarios`;
+--
 -- Volcado de datos para la tabla `usuarios`
 --
 
@@ -271,6 +307,11 @@ CREATE TABLE IF NOT EXISTS `zonas` (
   PRIMARY KEY (`idzona`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+--
+-- Truncar tablas antes de insertar `zonas`
+--
+
+TRUNCATE TABLE `zonas`;
 --
 -- Volcado de datos para la tabla `zonas`
 --
