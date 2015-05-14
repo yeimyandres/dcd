@@ -63,9 +63,12 @@
 			<form name="frmregistropasaje" id="frmregistropasaje">
 				<label for="cboyears">Año</label>
 				<select name="cboyears" id="cboyears">
-					<option value="2015">2015</option>
-					<option value="2016">2016</option>
-					<option value="2017">2017</option>
+				<?php
+					$añoactual = date("Y");
+					for ($i=$añoactual; $i < $añoactual+3; $i++) { 
+						echo "<option value='$i'>$i</option>";
+					}
+				?>					
 				</select>
 				<label for="cbomeses">Mes</label>
 				<select name="cbomeses" id="cbomeses">
@@ -83,20 +86,31 @@
 					<option value="12">Diciembre</option>
 				</select>
 				<div id="selecciondias"></div>
+				<label for="lstpasajes">Pasajes registrados para la fecha</label>
 				<select name="lstpasajes" id="lstpasajes" size=4>
 					<option value="0">Pasajes correspondientes a la fecha seleccionada</option>
 				</select>
-				<label for=""></label>
-				<input type="text">
-				<label for=""></label>
-				<input type="text">
-				<label for=""></label>
-				<input type="text">
-				<label for=""></label>
-				<input type="text">
-				<label for=""></label>
-				<input type="text">
-				<input type="submit">
+				<input type="button" id="cmdeliminar" name="cmdeliminar" value="Eliminar pasaje">
+				<label for="lstlibros">Libros</label>
+				<select name="lstlibros" id="lstlibros">
+					<?php
+						$cadenaSQL = "SELECT idlibro, nomlibro FROM libros ORDER BY idlibro";
+						$resultado = mysqli_query($enlace, $cadenaSQL);
+						while($libro=mysqli_fetch_row($resultado)){
+							echo "<option value='".$libro[0]."'>".utf8_encode($libro[1]);
+							echo "</option>";
+						}
+					?>					
+				</select>
+				<label id="lblcapitulos" for="lstcapitulos">Capítulos</label>
+				<select name="lstcapitulos" id="lstcapitulos">
+				</select>
+				<label id="lblversiculosini" for="lstversiculosini">Versículo Inicial</label>
+				<select name="lstversiculosini" id="lstversiculosini">
+				</select>
+				<label id="lblversiculosfin" for="lstversiculosfin">Versículo Final</label>
+				<select name="lstversiculosfin" id="lstversiculosfin"></select>
+				<input type="button" id="cmdagregar" name="cmdagregar" value="Agregar pasaje">
 			</form>
 		</article>
 	</section>
@@ -128,9 +142,77 @@
 	<script type="text/javascript">
 
 		$(document).ready(function(){
+			$("#lblcapitulos").hide();
+			$("#lblversiculosini").hide();
+			$("#lblversiculosfin").hide();			
+			$("#lstcapitulos").hide();
+			$("#lstversiculosini").hide();
+			$("#lstversiculosfin").hide();
+			var d = new Date();
+			var month = d.getMonth()+1;
+			var yearinicio = d.getFullYear();
+			var dayinicio = d.getDate();
+			$("#cbomeses").val(month);
+
+			var diasinicio = diasdelmes(month,yearinicio);
+			var textohtmlinicio = "<label for='cbodias'>Día</label><select name='cbodias' id='cbodias'>";
+			for (var i = 1; i <= diasinicio; i++) {
+				textohtmlinicio += "<option value='"+i+"'>"+i+"</option>";
+			};
+			textohtmlinicio += "</select>";
+			$("#selecciondias").html(textohtmlinicio);
+			$("#cbodias").val(dayinicio);
+			traerpasajes(dayinicio,month,yearinicio);
+			$("#cbodias").change(function(){
+				var year = $("#cboyears").val();
+				var mes = $("#cbomeses").val();
+				var dia = $("#cbodias").val();
+				traerpasajes(dia,mes,year);
+			});	
 			$("h2.titulotopico").click(function(){
 				var idseccion = $(this).attr("id");
 				$("article.topico#articulo"+idseccion).slideToggle(400);
+			});
+			$("#lstlibros").change(function(){
+				var libro = $(this).val();
+				$.ajax({
+					url: './php/traercapitulos.php',
+					type: 'POST',
+					dataType: 'html',
+					data: "libro="+libro,
+				})
+				.done(function(respuesta) {
+					$("#lstcapitulos").html(respuesta);
+					$("#lblcapitulos").show();
+					$("#lstcapitulos").show();
+					$("#lstcapitulos").change(function(){
+						var capitulo = $(this).val();
+						$.ajax({
+							url: './php/traerversiculos.php',
+							type: 'POST',
+							dataType: 'html',
+							data: "libro="+libro+"&capitulo="+capitulo,
+						})
+						.done(function(respuesta) {
+							$("#lblversiculosini").show();
+							$("#lstversiculosini").show();
+							$("#lblversiculosfin").show();
+							$("#lstversiculosfin").show();
+							$("#lstversiculosini").html(respuesta);
+							$("#lstversiculosfin").html(respuesta);
+						})
+						.fail(function() {
+							console.log("error");
+						})
+						.always(function() {
+							console.log("complete");
+						});
+						
+					});
+				})
+				.fail(function(error) {
+					console.log("error: "+error);
+				});				
 			});
 			$("#menumovil").click(function(){
 				$(".nomovil").slideToggle(400);
