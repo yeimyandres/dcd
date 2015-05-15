@@ -73,6 +73,7 @@
 		<article class="comentarios">
 			<h2>Comentarios del pasaje del día de hoy</h2>
 			<textarea name="txtcomentarios" id="txtcomentarios" cols="30" rows="5"></textarea>
+			<input type="button" value="Favorito">
 			<input type="button" value="Guardar">
 			<input type="button" value="Terminar">
 		</article>
@@ -119,6 +120,7 @@
 				mostrarpasaje(numero,diaelegido);
 			});
 		});
+		
 		function mostrarpasaje(numero,diaelegido){
 			var meses = ["meses","enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 			var mes = $(".botonmeses").attr("id");
