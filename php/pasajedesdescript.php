@@ -18,7 +18,7 @@
 		{
 			$result1 = mysqli_query($enlace,"SELECT nomlibro FROM libros Where idlibro=".$libro[0]);
 			$row1 = mysqli_fetch_row($result1);
-			$result2 = mysqli_query($enlace,"SELECT capitulo, versiculoini, versiculofin FROM devocionales WHERE dia=$dia AND mes=$mes AND anual=$year AND libro=".$libro[0]." ORDER BY libro");
+			$result2 = mysqli_query($enlace,"SELECT capitulo, versiculoini, versiculofin, iddevocional FROM devocionales WHERE dia=$dia AND mes=$mes AND anual=$year AND libro=".$libro[0]." ORDER BY libro");
 			while($row =mysqli_fetch_row($result2))
 			{
 				if($row[1]==$row[2]){
@@ -26,7 +26,8 @@
 				}else{
 					$referencia = utf8_encode($row1[0]).", ".$row[0].": ".$row[1]." - ".$row[2];
 				}
-				echo "<h2>".$referencia."</h2>";	
+				echo "<h2>".$referencia."</h2>";
+				echo "<input type='hidden' id='txtiddevocional' name='txtiddevocional' value=".$row[3]." />";
 				for ($i=$row[1]; $i <=$row[2] ; $i++) { 
 					$cadenaSQL = "SELECT escritura FROM escrituras WHERE idlibro = ".$libro[0]." AND capitulo = ".$row[0]." AND versiculo = ".$i;
 					$resultver = mysqli_query($enlace,$cadenaSQL);

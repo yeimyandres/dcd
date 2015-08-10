@@ -44,6 +44,9 @@
 			<figure>
 				<a class="iconousuario" href="./perfil.php">
 					<img <?php echo "src='./img/usuarios/".$imagenusuario."' title='".utf8_encode($nombreusuario)."'" ?>>
+					<?php
+						echo "<input type='hidden' id='idusuario' value=".$idusuario." />";
+					?>
 				</a>
 			</figure>
 			<ul>
@@ -74,7 +77,7 @@
 			<h2>Comentarios del pasaje del día de hoy</h2>
 			<textarea name="txtcomentarios" id="txtcomentarios" cols="30" rows="5"></textarea>
 			<input type="button" value="Favorito">
-			<input type="button" value="Guardar">
+			<input type="button" id="cmdguardar" name="cmdguardar" value="Guardar">
 			<input type="button" value="Terminar">
 		</article>
 	</section>
@@ -119,6 +122,35 @@
 				var diaelegido = $(this);
 				mostrarpasaje(numero,diaelegido);
 			});
+			$("#cmdguardar").click(function(){
+				var iddevocional = $("#txtiddevocional").val();
+				var idusuario = $("#idusuario").val();
+				var dialog11 = $("#txtsubseccion11").val();
+				var dialog12 = $("#txtsubseccion12").val();
+				var dialog13 = $("#txtsubseccion13").val();
+				var dialog21 = $("#txtsubseccion21").val();
+				var dialog22 = $("#txtsubseccion22").val();
+				var dialog23 = $("#txtsubseccion23").val();
+				var dialog31 = $("#txtsubseccion31").val();
+				var dialog32 = $("#txtsubseccion32").val();
+				var cadena = "iddevocional="+iddevocional+"&idusuario="+idusuario;
+				cadena += "&dialog11="+dialog11+"&dialog12="+dialog12+"&dialog13="+dialog13;
+				cadena += "&dialog21="+dialog21+"&dialog22="+dialog22+"&dialog23="+dialog23;
+				cadena += "&dialog31="+dialog31+"&dialog32="+dialog32;
+				$.ajax({
+					url: './php/guardardevocional.php',
+					type: 'post',
+					dataType: 'html',
+					data: cadena
+				})
+				.done(function(e) {
+					alert(e);
+				})
+				.fail(function() {
+					console.log("error");
+				});
+				
+			});
 		});
 		
 		function mostrarpasaje(numero,diaelegido){
@@ -137,17 +169,44 @@
 				$(".diaactual").removeClass('diaactual');
 				diaelegido.addClass('diaactual');
 				$("#fechaactual").html("<b>Fecha Actual Seleccionada:</b><div id='mifecha'>"+numero+" de "+meses[mes]+" de "+year+"</div>");
+				mostrarguardados();
 			})
 			.fail(function(a,b,c){
 				alert("Datos error: "+a+", "+b+", "+c)
 			});			
 		}
 
+		function mostrarguardados(iddevocional){
+			var iddevocional = $("#txtiddevocional").val();
+			var idusuario = $("#idusuario").val();
+			$.ajax({
+				url: './php/mostrarguardados.php',
+				type: 'post',
+				dataType: 'html',
+				data: "iddevocional="+iddevocional+"&idusuario="+idusuario,
+			})
+			.done(function(resultado) {
+				$(".devocional").html(resultado);
+				$(".opciondevocional").click(function(){
+					var nombre = "sub" + $(this).attr("id");
+					$("."+nombre).slideToggle("500");
+				});
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		}
+
 		function mostrarcalendario(){
 				var fecha = new Date();
+				var diacalendario = $("td.diaactual").html();
 				var dia = fecha.getDate();
 				var mes = $(".botonmeses").attr("id");
-				var year = $(".botonaños").html();			
+				var year = $(".botonaños").html();
 				$.ajax({
 					url: './php/calendariodesdescript.php',
 					type: 'POST',
@@ -156,6 +215,8 @@
 				})
 				.done(function(respuesta) {
 					$("#seccioncalendario").html(respuesta);
+					var elegido = $("#dia"+diacalendario);
+					mostrarpasaje(diacalendario,elegido);
 					$(".opciondia").click(function() {
 						var numero = $(this).html();
 						var diaelegido = $(this);

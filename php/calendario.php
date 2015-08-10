@@ -25,15 +25,18 @@
 		if($i==1){
 			echo "<tr>";
 			if($diainicial==0){
-				echo "<td class='opciondia $clase'>$i</td>";
+				echo "<td class='opciondia $clase' id='dia".$i."'>$i</td>";
 			}else{
 				for ($j=0; $j < $diainicial; $j++){ 
 					echo "<td></td>";
 				}
-				echo "<td class='opciondia $clase'>$i</td>";
+				echo "<td class='opciondia $clase' id='dia".$i."'>$i</td>";
+			}
+			if((date("w", mktime(0,0,0,$mesactual,$i,$añoactual)))==6){
+				echo "</tr><tr>";
 			}
 		}else{
-			echo "<td class='opciondia $clase'>$i</td>";
+			echo "<td class='opciondia $clase' id='dia".$i."'>$i</td>";
 			if((date("w", mktime(0,0,0,$mesactual,$i,$añoactual)))==6){
 				echo "</tr>";
 				if($i<$diasmesactual){
